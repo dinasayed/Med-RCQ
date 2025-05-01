@@ -7,7 +7,8 @@ Welcome to the GitHub page of Med-RCQ (Medical Reasoning by Concluding and Quest
 - [MedQA](https://huggingface.co/med-rcq/MedQA): An LLM fine-tuned for decision-making by answering medical questions with either yes, no, or maybe.
 
 This repository contains testing code to evaluate Med-RCQ using medical benchmarks, along with the testing dataset. The training dataset used can be found on Hugging Face under [`med-rcq/med-rcq-dataset`]([https://github.com/Teddy-XiongGZ/MedRAG](https://huggingface.co/datasets/med-rcq/med-rcq-dataset/tree/main)) 
-
+### Prompt Templates
+All prompts used during training and evaluation are documented in [`src/prompts/template.py`](src/prompts/template.py).
 
 ## Table of Contents
 
