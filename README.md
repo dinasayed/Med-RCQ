@@ -33,23 +33,24 @@ curl -O <https://repo.anaconda.com/archive/Anaconda3-2024.02-1-Linux-x86_64.sh>;
 
 Below is a summary of results using the Med-RCQ models to generate a conclusion with MedConclusion, then reason over it using MedQA.
 | Dataset      | Accuracy    | Size     | Settings |Questions Type | Content Type
-|:----------|:---------:|:----------:|:----------:|:----------|:----------:|
+|:----------|:---------:|:----------:|:----------|:----------|:----------|
 | PubMedQA      | 81%    |    500   | Reason-required Settings|Multi Choice: Yes/No/Maybe|Medical Literature |
 | BioASQ Task 12b | 90.2% |    100   | Reason over top 10 snippets|Multi Choice: Yes/No|Medical Literature |
 
 Below is a summary of results obtained by utilizing GPT-4.1 Nano to reason over different medical use case contexts, with and without MedConclusion-generated conclusions.
 
 | Dataset      | Accuracy    | Size     | Settings |Questions Type | Content Type
-|:----------|:---------:|:----------:|:----------:|:----------|:----------:|
-| MedQA-US | **72.11%**     |    1,273   | With MedConclusion|Multi Choice: A/B/C/D|Medical Use Case |
-| MedQA-US | 67.64%     |    1,273   |Without MedConclusion|Multi Choice: A/B/C/D|Medical Use Case |
-| MedMCQA | **86.46%**      |    1,041   | With MedConclusion|Multi Choice: A/B/C/D|Medical Information |
-| MedMCQA | 85.30%      |    1,041   |Without MedConclusion|Multi Choice: A/B/C/D|Medical Information |
-| MMLU-professional_medicine | **85.66%** | 272   | With MedConclusion|Multi Choice: A/B/C/D|Medical Use Case |
-| MMLU-professional_medicine | 84.56% | 272   |Without MedConclusion|Multi Choice: A/B/C/D|Medical Use Case |
+|:----------|:---------:|:----------:|:----------|:----------|:----------|
+| MedQA-US | **72.11%** |    1,273   |W MedConclusion|Multi Choice: A/B/C/D|Medical Use Case |
+| MedQA-US | 67.64%     |    1,273   |W/o MedConclusion|Multi Choice: A/B/C/D|Medical Use Case |
+| MedMCQA | **86.46%**  |    1,041   |W MedConclusion|Multi Choice: A/B/C/D|Medical Information |
+| MedMCQA | 85.30%      |    1,041   |W/o MedConclusion|Multi Choice: A/B/C/D|Medical Information |
+| MMLU-professional_medicine | **85.66%** | 272   | W MedConclusion|Multi Choice: A/B/C/D|Medical Use Case |
+| MMLU-professional_medicine | 84.56% | 272   |W/o MedConclusion|Multi Choice: A/B/C/D|Medical Use Case |
 ## PubMedQA Evaluation
 
-The PubMedQA dataset is composed of 500 records for testing Yes/No/Maybe questions. The original dataset is available [here](https://github.com/pubmedqa/pubmedqa)
+The PubMedQA dataset is composed of 500 records for testing Yes/No/Maybe questions. The original dataset is available [here](https://github.com/pubmedqa/pubmedqa).
+
 An example of the format for one record in the PubMedQA dataset is as follows:
 ```json
    "18239988": {
@@ -95,11 +96,14 @@ An example of the format for one record in the PubMedQA dataset is as follows:
     },
 ```
 To execute the evalution using Med-RCQ follow the following steps:
+
 1- Navigate to src directory, each directory contain the benchmark and the correspond dataset to evaluate. For pubmed directory, it will cover PubMedQA and BioASQ.
+
 2- Using the activated conda environment **medrcq_env** run the following command:
   ```
   python generate_conclusion.py pubmedqa_testset.csv g_conc_out.csv
   ```
+
 3- After generating the conclusion use the generated file (i.e. g_conc_out.csv) to answer PubMedQA questions:
   ```
   python make_decision.py g_conc_out.csv g_qa_out.csv
@@ -152,9 +156,9 @@ python make_decision.py bioasq_conc_out.csv bioasq_qa_out.csv
 
 The MedQA-US dataset is composed of 1,273 records for testing and is available [here](https://github.com/jind11/MedQA).  
   
-The dataset has been reformatted into JSONL and is named medqa_testset.jsonl. This test set includes the following fields:
+The dataset has been reformatted into JSONL and is named to medqa_testset.jsonl. This test set includes the following fields:
 
-1. **Title**: Represents a short title for the use case (i.e., question). The title is generated using GPT-4.1 nano.
+1. **title**: Represents a short title for the use case (i.e., question). The title is generated using GPT-4.1 nano.
 2. **generated_conclusion**: A conclusion generated using the MedConclusion model.
 3. **context** and **finalq**: The original question is split into two fields—context (the background information) and finalq (the final question)—to better structure the prompt using context + conclusion.
 An example of the format for one record in the MedQA dataset is as follows:
@@ -183,7 +187,7 @@ The MedMCQA dataset is composed of 4,183 records for testing and is available [h
 Since our focus is to reason over the context, we used the _context_ setting in the MedMCQA dataset, eliminating any explanations that are fewer than 60 words. The resulting dataset contains 1,041 records.  
 The new dataset has been reformatted into JSONL and is named mmlu_testset.jsonl. This test set includes the following fields:
 
-1. **Title**: Represents a short title for the use case (e.g., _exp_). The title is generated using GPT-4.1 nano.
+1. **title**: Represents a short title for the use case (e.g., _exp_). The title is generated using GPT-4.1 nano.
 2. **generated_conclusion**: A conclusion generated using the MedConclusion model.
 
 To run the evaluation: 
@@ -209,7 +213,7 @@ The MMLU_professional_medicine dataset is composed of 272 records. The dataset i
 
 The dataset has been reformatted into JSONL and is named mmlu_testset.jsonl. This test set includes new attributes as follows:
 
-1. **Title**: Represents a short title for the use case (e.g., _full_context_). The title is generated using GPT-4.1 nano.
+1. **title**: Represents a short title for the use case (e.g., _full_context_). The title is generated using GPT-4.1 nano.
 2. **generated_conclusion**: A conclusion generated using the MedConclusion model.
 3. **context** and **question**: The original full_context is split into two fields—context (the background information) and question (the final question)—to better structure the prompt using context + conclusion.
 An example of the format for one record in the MMLU professional medicine dataset is as follows:
