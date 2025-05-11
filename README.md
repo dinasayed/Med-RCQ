@@ -6,7 +6,7 @@ Welcome to the GitHub page of Med-RCQ (Medical Reasoning by Concluding and Quest
 
 - [MedQA](https://huggingface.co/med-rcq/MedQA): An LLM fine-tuned for decision-making by answering medical questions with either yes, no, or maybe.
 
-This repository contains testing code to evaluate Med-RCQ using medical benchmarks, along with the testing dataset. The training dataset used can be found on Hugging Face under [`med-rcq/med-rcq-dataset`]([https://github.com/Teddy-XiongGZ/MedRAG](https://huggingface.co/datasets/med-rcq/med-rcq-dataset/tree/main)) 
+This repository contains testing code to evaluate Med-RCQ using medical benchmarks, along with the testing dataset. The training dataset used can be found on Hugging Face under [`med-rcq/med-rcq-dataset`](https://huggingface.co/datasets/med-rcq/med-rcq-dataset/tree/main)
 ### Prompt Templates
 All prompts used during training and evaluation are documented in [`src/prompts/template.py`](src/prompts/template.py).
 
@@ -31,22 +31,20 @@ curl -O <https://repo.anaconda.com/archive/Anaconda3-2024.02-1-Linux-x86_64.sh>;
 ```
 ## Evaluation Results
 
-Below is a summary of results using the Med-RCQ models to generate a conclusion with MedConclusion, then reason over it using MedQA.
-| Dataset      | Accuracy    | Size     | Settings |Questions Type | Content Type
+Below is a summary of results using the Med-RCQ models to generate a conclusion with MedConclusion, then reason over it using MedQA. 
+| Dataset      | Accuracy    | Dataset Size     | Settings |Questions Type | Content Type
 |:----------|:---------:|:----------:|:----------|:----------|:----------|
 | PubMedQA      | 81%    |    500   | Reason-required Settings|Multi Choice: Yes/No/Maybe|Medical Literature |
 | BioASQ Task 12b | 90.2% |    100   | Reason over top 10 snippets|Multi Choice: Yes/No|Medical Literature |
 
-Below is a summary of results obtained by utilizing GPT-4.1 Nano to reason over different medical use case contexts, with and without MedConclusion-generated conclusions.
+Below is a summary of results obtained by utilizing GPT-4.1 Nano to reason over different medical use case contexts, with and without MedConclusion-generated conclusions. It is multiple-choice QA where options can be either A, B, C, or D. Each option contains a different medical answer, depending on the question.
 
-| Dataset      | Accuracy    | Size     | Settings |Questions Type | Content Type
-|:----------|:---------:|:----------:|:----------|:----------|:----------|
-| MedQA-US | **72.11%** |    1,273   |W MedConclusion|Multi Choice: A/B/C/D|Medical Use Case |
-| MedQA-US | 67.64%     |    1,273   |W/o MedConclusion|Multi Choice: A/B/C/D|Medical Use Case |
-| MedMCQA | **86.46%**  |    1,041   |W MedConclusion|Multi Choice: A/B/C/D|Medical Information |
-| MedMCQA | 85.30%      |    1,041   |W/o MedConclusion|Multi Choice: A/B/C/D|Medical Information |
-| MMLU-professional_medicine | **85.66%** | 272   | W MedConclusion|Multi Choice: A/B/C/D|Medical Use Case |
-| MMLU-professional_medicine | 84.56% | 272   |W/o MedConclusion|Multi Choice: A/B/C/D|Medical Use Case |
+| Dataset   | Accuracy with MedConclusion | Accuracy w/o MedConclusion |Dataset Size |Content Type
+|:----------|:---------:|:----------:|:----------:|:----------|
+| MedQA-US | **72.11%** |  67.64%    |1,273 |Medical Use Case |
+| MedMCQA | **86.46%**  |  85.30%    |1,041|Medical Information |
+| MMLU-professional_medicine | **85.66%** |  84.56% | 272 |Medical Use Case |
+
 ## PubMedQA Evaluation
 
 The PubMedQA dataset is composed of 500 records for testing Yes/No/Maybe questions. The original dataset is available [here](https://github.com/pubmedqa/pubmedqa).
