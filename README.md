@@ -194,15 +194,13 @@ python medmcqa.py
 ```
 An example of the format for one record in the MedMCQA dataset is as follows:
 ```json
-{
-"question": "Which vitamin is required for glycogen Phosphorylase?",
-"exp": "Glycogen phosphorylase is the rate limiting enzyme of glycogenolysis. And it requires PLP. The active form of vitamin B6 is the coenzyme pyridoxal phosphate (PLP) PLP can be synthesized from the three compounds pyridoxine, pyridoxal and pyridoxamine. This PLP for this enzyme Glycogen phosphorylase is not required as co-enzyme, but it act as a phosphate donor. Enzyme glycogen phosphorylase will cut glycogen a (1-4) bond apa and the glucose released are transferred in Glucose-1-phosphate and that phosphate is taken from PLP.",
-"cop": 1, "opa": "PLP", "opb": "TPP", "opc": "Riboflavin", "opd": "Lipoic acid",
-"subject_name": "Biochemistry", "topic_name": "AIIMS 2017", "id": "3624dceb-9318-4aa7-add1-b4c2fbac3065",
-"choice_type": "single",
-"title": "Vitamin B6 as a Phosphate Donor in Glycogenolysis",
-"generated_conclusion": "Glycogen phosphorylase is the rate limiting enzyme of glycogenolysis. And it requires PLP. The active form of vitamin B6 is the coenzyme pyridoxal phosphate (PLP) PLP can be synthesized from the three compounds pyridoxine, pyridoxal and pyridoxamine. This PLP for this enzyme Glycogen phosphorylase is not required as co-enzyme, but it act as a phosphate donor. Enzyme glycogen phosphorylase will cut glycogen a (1-4) bond apa and the glucose released are transferred in Glucose-1-phosphate and that phosphate is taken from PLP."
-}
+{"question": "A patient presented to emergency with overdose some drug. There were increased salivation and increased bronchial secretions. On examination, blood pressure was 88/60 mmHg. RBC esterase level is 50. What should be the treatment of this person?", 
+"exp": "Low esterase levels are suggestive of overdose of some drug which acts by inhibiting acetyl choline esterase like organophosphate poisoning. Inhibition of choline esterase results In increased amount of Ach at synapse, so poisoning or overdose results in cholinergic symptoms like salivation, lacrimation, urination, emesis, increased bronchial secretions, reduction in blood pressure.So treatment Of choice is Atropine. Atropine -It is highly effective in counter-acting the muscarinic symptoms, but higher doses are required to antagonize the central effects. It does not reverse peripheral muscular paralysis which is a nicotinic action. All cases of anti-ChE (carbamate or organophosphate) poisoning must be promptly given atropine2 mg i.v. repeated every 10 min till dryness of mouth or other signs of atropinization appear (upto 200 mg has been administered in a day). Continued treatment with maintenance doses may be required for 1-2 weeks. Neostigmine and physostigmine worsens the signs and symptoms as these also act by inhibiting choline esterase. Physostigmine and flumazenil are respectively used for Atropine and benzodiazepines poisoning.",
+"cop": 2, "opa": "Neostigmine", "opb": "Atropine", "opc": "Flumazenil", "opd": "Physostigmine", "subject_name": "Pharmacology", 
+"topic_name": "AIIMS 2019", "id": "a3da135a-a6a2-4e1c-8823-8ab0913f5668", 
+"choice_type": "single", 
+"title": "Treatment of Organophosphate Poisoning with Atropine",
+"generated_conclusion": "Atropine is the drug of choice in organophosphate poisoning."}
 ```
 
 ## MMLU Evaluation
